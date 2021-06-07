@@ -1,0 +1,38 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.LoginModel
+@{
+    ViewData["Title"] = "Capstone Login";
+}
+@section styles {
+@* <link rel="stylesheet" href="~/styles/manage-tee-times-styles.css"> *@
+<link rel="stylesheet" href="~/styles/login-styles.css">
+}
+@section scripts {
+
+}
+@section NotificationMessages {
+    @* <div id="NotificationMessages" class="notification-messages">
+        @if (Model.InfoMessage.Length > 0) {
+            <strong class="info-message">@Model.InfoMessage</strong>
+        }
+        @if (Model.WarningMessage.Length > 0) {
+            <strong class="warning-message">@Model.WarningMessage</strong>
+        }
+        @if (Model.DangerMessage.Length > 0) {
+            <strong class="danger-message">@Model.DangerMessage</strong>
+        }
+    </div> *@
+}
+<h1>Sign In</h1>
+<hr>
+<form method="POST">
+    <label>Username:</label>
+    <input type="text" name="UserName" placeholder="Username..."/>
+    <label>Password:</label>
+    <input type="password" name="Password" placeholder="Password..."/>
+    <div class="flex-right">
+        <input type="submit" name="Submit" value="Sign In"/>
+    </div>
+</form>
+<a href="~/CreateUserAccount">Create Account</a>
+<hr>

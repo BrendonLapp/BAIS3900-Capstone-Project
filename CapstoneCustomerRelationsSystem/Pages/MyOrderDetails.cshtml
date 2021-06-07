@@ -1,0 +1,98 @@
+﻿@page "/MyOrderDetails/{OrderID}"
+@model CapstoneCustomerRelationsSystem.Pages.MyOrderDetailsModel
+@{
+}
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/bstylesheet.css" />
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+}
+
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div>
+
+    <div class="orderdetails">
+        <h2>Order Details for Order: @Model.OrderID</h2>
+        <div>
+            <div class="orderleftpane">
+                <div>
+                    <label asp-for="OrderDetails.OrderStatus"></label>
+                </div>
+                <div>
+                    <label asp-for="OrderDetails.PlacedDate"></label>
+                </div>
+                <div>
+                    <label asp-for="OrderDetails.CompletedDate"></label>
+                </div>
+                <div>
+                    <label asp-for="OrderDetails.CapstoneLocation"></label>
+                </div>
+            </div>
+            <div class="orderightpane">
+                <div>
+                    <label>@Model.OrderDetails.OrderStatus</label>
+                </div>
+                <div>
+                    <label>@Model.OrderDetails.PlacedDate.ToString("MMM/dd/yyyy")</label>
+                </div>
+                <div>
+                    <label>@Model.OrderDetails.CompletedDate.ToString("MMM/dd/yyyy")</label>
+                </div>
+                <div>
+                    <label>@Model.OrderDetails.CapstoneLocation</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Quantity Requested</th>
+                    <th>Quantity On Hand</th>
+                    <th>Price Per Item</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Order in Model.OrderDetails.OrderItems)
+                {
+                    <tr class="tablerow">
+                        <td><img src="@Order.Image" alt="Product Iamge" /></td>
+                        <td>@Order.Name</td>
+                        <td>@Order.QuantityRequested</td>
+                        <td>@Order.QuantityOnHand</td>
+                        <td>@decimal.Round(Order.LineItemPrice, 2).ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="valuebox">
+            <div class="valueleftbox">
+                <label>SubTotal: </label>
+                <br />
+                <label>GST: </label>
+                <br />
+                <label>Total: </label>
+            </div>
+            <div class="valuerightbox">
+                <label>@decimal.Round(Model.OrderDetails.SubTotal, 2).ToString("C")</label>
+                <br />
+                <label>@decimal.Round(Model.OrderDetails.GST, 2).ToString("C")</label>
+                <br />
+                <label>@decimal.Round(Model.OrderDetails.Total, 2).ToString("C")</label>
+                <input asp-for="@Model.OrderDetails.Total" type="hidden" />
+            </div>
+        </div>
+    </div>
+</div>

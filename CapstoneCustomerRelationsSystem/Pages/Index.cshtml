@@ -1,0 +1,64 @@
+@page
+@using Domain
+@model CapstoneCustomerRelationsSystem.Pages.IndexModel
+@{
+    ViewData["Title"] = "Capstone News";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/carousel.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+}
+@section scripts {
+    <script type="text/javascript" src="~/scripts/carousel-script.js"></script>
+}
+<h1>@ViewData["Title"]</h1>
+@section GreetingContainer {
+    <div id="GreetingContainer">
+            <ul id="CarouselSlidesContainer">
+                @foreach(var _newsItem in @Model.NewsItems.Where(_x => _x.ImageType.ToLower() == "hero image")) {
+                <li>
+                    <img src="@_newsItem.ImageURL" alt="News Item">
+                </li>
+                }
+            </ul>
+            <div id="CarouselSliderControls">
+                <button class="hide-me" id="CarouselLeftButton"><i class="fas fa-chevron-left"></i></button>
+                <ol id="CarouselDotsContainer">
+                    @foreach(var _newsItem in @Model.NewsItems.Where(_x => _x.ImageType.ToLower() == "hero image")) {
+                    <li>
+                        <button></button>
+                    </li>
+                    }
+                </ol>
+                <button id="CarouselRightButton"><i class="fas fa-chevron-right"></i></button>
+            </div>
+    </div>
+}
+
+<!--Populate this container with news items-->
+<section id="NewsItems" class="news-items-container">
+    <section id="ImportantInfo" class="important-info">
+        @foreach (NewsItem _newsItem in Model.NewsItems.Where(_x => _x.ImageType.ToLower() == "promotion").ToList()) {
+            <a class="news-item-container" href="@_newsItem.NewsItemLink">
+                <div class="image-container">
+                    <img src="@_newsItem.ImageURL" alt="News Item" />
+                </div>
+            </a>
+        }
+    </section>
+    <ul id="Grid" class="push-from-top">
+        @foreach (var _newsItem in Model.NewsItems.Where(_x => _x.ImageType.ToLower() != "promotion" && _x.ImageType.ToLower() != "hero image")) {
+        <li class="news-card">
+            <a class="news-item-container" href="@_newsItem.NewsItemLink">
+                <div class="image-container">
+                    <img src="@_newsItem.ImageURL" alt="News Item" />
+                </div>
+                <span class="news-item-name">@_newsItem.OptionalNewsName</span>
+                <span class="news-item-description">@_newsItem.OptionalNewsDescription</span>
+                <span class="news-item-price">@_newsItem.OptionalNewsPrice</span>
+            </a>
+        </li>
+        }
+    </ul>
+</section>

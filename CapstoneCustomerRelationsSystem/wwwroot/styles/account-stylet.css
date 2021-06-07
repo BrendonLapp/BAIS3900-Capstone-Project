@@ -1,0 +1,51 @@
+﻿body {
+    background-image: url(../images/Capstone-one-background.png);
+    background-size: contain;
+}
+
+    body main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        color: #fff;
+    }
+
+main .container {
+    background-color: #252424ed;
+    width: 55rem;
+    padding: 2rem;
+}
+
+    main .container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+input {
+    border: none;
+    border-radius: 0;
+}
+
+main .container input[type="text"],
+main .container input[type="password"] {
+    width: 26rem;
+    margin-bottom: 1rem;
+    cursor: text;
+}
+
+main .container input[type="submit"] {
+    background-color: #008000;
+    color: #fff;
+}
+
+    main .container input[type="submit"]:hover {
+        background-color: #006400;
+        cursor: pointer;
+    }
+
+.flex-right {
+    display: flex;
+    justify-content: right;
+}

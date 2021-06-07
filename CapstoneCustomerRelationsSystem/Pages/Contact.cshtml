@@ -1,0 +1,80 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+@section styles {
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/styles/bstylesheet.css" />
+}
+
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<section class="contact-us-container">
+    <div>
+        <a href="https://m.me/Capstone.One.Comics" target="_blank">
+            <img src="~/images/Capstone-one.png" alt="Capstone 1" class="Capstone-logo" />
+            Message us on Facebook Messenger <i class="fab fa-facebook-messenger"></i>
+        </a>
+        <p>Phone Us At: (780) 471-6248</p>
+    </div>
+
+    <div class="boxtwo">
+        <a href="https://m.me/Capstone-2-Comics-and-Games-200341595196/" target="_blank">
+            <img src="~/images/Capstone-two.png" alt="Capstone 2" />
+            Message us on Facebook Messenger <i class="fab fa-facebook-messenger"></i>
+        </a>
+        <p>Phone Us At: (780) 471-6248</p>
+    </div>
+
+    <div class="boxthree">
+        <a href="https://m.me/Capstone3ComicsandGames" target="_blank">
+            <img src="~/images/Capstone-three.png" alt="Capstone 3" />
+            Message us on Facebook Messenger <i class="fab fa-facebook-messenger"></i>
+        </a>
+        <p>Phone Us At: (780) 471-6248</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <form method="post" class="contactform">
+        <div>
+            <div>
+                <p name="SuccessMessage"></p>
+            </div>
+            <div>
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name" class="warning"></span>
+                <input asp-for="Name" />
+            </div>
+            <br />
+            <div>
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="warning"></span>
+                <input asp-for="Email" />
+
+            </div>
+            <br />
+            <div>
+                <label asp-for="Subject"></label>
+                <span asp-validation-for="Subject" class="warning"></span>
+                <input asp-for="Subject" />
+            </div>
+            <br />
+            <div class="inputwidth">
+                <label asp-for="EmailText"></label>
+                <span asp-validation-for="EmailText" class="warning"></span>
+                <textarea asp-for="EmailText" cols="9"></textarea>
+
+            </div>
+            <br />
+            <div>
+                <input type="submit" name="Submit" value="Submit" class="green-button custom-button specialinput" />
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,139 @@
+#GreetingContainer {
+    position: relative;
+    margin: 0 auto;
+    height: 52rem;
+    /* width: 95rem; */
+    width: 100%;
+    background-color: #000;
+    overflow: hidden;
+}
+
+#GreetingContainer button {
+    cursor: pointer;
+}
+
+#CarouselSlidesContainer {
+    /* transition: transform 2s; */
+    height: 100%;
+}
+
+#CarouselSlidesContainer li {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#CarouselSlidesContainer li img {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#CarouselSlidesContainer li.current-slide img {
+    opacity: 100;
+}
+
+#CarouselSlidesContainer img {
+    /* width: 100%; */
+    width: auto;
+    height: 100%;
+}
+
+#CarouselSliderControls {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 98;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#CarouselSliderControls #CarouselRightButton,
+#CarouselSliderControls #CarouselLeftButton {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    font-size: 4rem;
+}
+#CarouselSliderControls #CarouselRightButton i,
+#CarouselSliderControls #CarouselLeftButton i {
+    text-shadow: 0 0 1rem blue;
+}
+#CarouselLeftButton {
+    left: 0;
+}
+#CarouselRightButton {
+    right: 0;
+}
+#CarouselDotsContainer {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-end;
+    margin: 0 auto;
+    background-color: #141414;
+    padding: 0rem 1rem 5rem 1rem;
+    border-radius: 1rem; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-end;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    background-color: #252424;
+    padding: 0rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+    z-index: 99;
+    margin-bottom: -1rem;
+}
+body #GreetingContainer .hide-me {
+    display: none;
+}
+
+#CarouselDotsContainer button {
+    background-color: #5e5c5c;
+    color: transparent;
+    border-radius: 2rem;
+    border: none;
+    margin: 0 .2rem;
+    height: 1rem;
+    width: 1rem;
+}
+#CarouselDotsContainer button.current-slide {
+    background-color: #aaa;
+}
+
+/* body main .important-info {
+    z-index: 99;
+} */
+
+@media Only screen and (max-width: 980px) {
+    #GreetingContainer {
+        width: 100%;
+        margin-top: 8rem;
+        height: 40vh;
+    }
+    body #CarouselSlidesContainer img {
+        width: auto;
+        height: 100%;
+    }
+    body #CarouselDotsContainer {
+        display: none;
+    }
+    #CarouselSliderControls #CarouselRightButton,
+    #CarouselSliderControls #CarouselLeftButton {
+        font-size: 6rem;
+        padding: 1rem;
+    }
+}

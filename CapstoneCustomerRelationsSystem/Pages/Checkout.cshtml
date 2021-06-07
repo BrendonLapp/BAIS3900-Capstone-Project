@@ -1,0 +1,98 @@
+﻿@page "/Checkout/{OrderID}"
+@model CapstoneCustomerRelationsSystem.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout For: " + Model.OrderID;
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/bstylesheet.css">
+}
+
+@section scripts {
+
+}
+
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div class="checkout-cart">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Quantity On Hand</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var Order in Model.Order.OrderItems)
+            {
+                if (Order.QuantityOnHand != 0)
+                {
+                    <tr class="tablerow">
+                        <td><img src="@Order.Image" alt="Product Iamge" /></td>
+                        <td>@Order.Name</td>
+                        <td>@Order.QuantityOnHand</td>
+                        <td>@decimal.Round(Order.LineItemPrice, 2).ToString("C")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="paymentpane">
+    <p>@Model.Message</p>
+    <form method="post" id="payment-form">
+        <input type="hidden" name="OrderID" value="@Model.OrderID" />
+
+        <div class="form-container">
+            <div class="field-container">
+                <label for="name">Name</label>
+                <input id="name" maxlength="20" type="text" placeholder="Name on your credit card" name="CardHolderName">
+            </div>
+            <div class="field-container">
+                <label for="cardnumber">Card Number</label>
+                <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" name="CardNumber" placeholder="1234123412341234" maxlength="16" />
+            </div>
+            <div class="field-container">
+                <label for="expirationdate">Month</label>
+                <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric" name="CardExpiryMonth" placeholder="MM" maxlength="2" />
+            </div>
+            <div class="field-container">
+                <label for="expirationdate">Year</label>
+                <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric" name="CardExpiryYear" placeholder="YY" maxlength="2" />
+            </div>
+            <div class="field-container">
+                <label for="securitycode">Security Code</label>
+                <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric" name="CardCVC" maxlength="4">
+            </div>
+        </div>
+
+        <div class="valuebox">
+            <div class="valueleftbox">
+                <label>SubTotal: </label>
+                <br />
+                <label>GST: </label>
+                <br />
+                <label>Total: </label>
+            </div>
+            <div class="valuerightbox">
+                <label>@decimal.Round(Model.Order.SubTotal, 2).ToString("C")</label>
+                <br />
+                <label>@decimal.Round(Model.Order.GST, 2).ToString("C")</label>
+                <br />
+                <label>@decimal.Round(Model.Order.Total, 2).ToString("C")</label>
+            </div>
+        </div>
+        <div class="buttonbox">
+            <input type="submit" name="Submit" value="Submit" class="custom-button green-button specialinput" />
+            <input type="submit" name="Submit" value="Cancel" class="custom-button red-button specialinput" />
+            <input type="hidden" name="OrderID" value="@Model.OrderID" />
+        </div>
+    </form>
+</div>

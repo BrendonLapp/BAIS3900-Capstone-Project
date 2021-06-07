@@ -1,0 +1,84 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.CartModel
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+    <link rel="stylesheet" href="~/styles/bstylesheet.css" />
+}
+
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div>
+    <div>
+        <form method="post">
+            <p class="warning">@Model.Message</p>
+            <table class="table cart">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Cart != null)
+                    {
+                        for (int index = 0; index < Model.Cart.Count(); index++)
+                        {
+
+                            <tr class="tablerow">
+                                <td><img src="@Model.Cart[index].ImageLink" alt="@Model.Cart[index].Name Image" class="table-alter" /></td>
+                                <td>@Model.Cart[index].Name</td>
+                                <td>
+                                    <input asp-for="@Model.Cart[index].CartID" type="hidden" />
+                                    <input asp-for="@Model.Cart[index].Quantity" min="1" />
+                                </td>
+                                <td>@Model.Cart[index].Price</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="valuebox">
+                <div class="valueleftbox">
+                    <label>SubTotal: </label>
+                    <br />
+                    <label>GST: </label>
+                    <br />
+                    <label>Total: </label>
+                </div>
+                <div class="valuerightbox">
+                    <label>$@decimal.Round(Model.SubTotal, 2)</label>
+                    <br />
+                    <label>$@decimal.Round(Model.GST, 2)</label>
+                    <br />
+                    <label>$@decimal.Round(Model.Total, 2)</label>
+                    <input asp-for="@Model.Total" type="hidden" />
+                </div>
+            </div>
+            <div class="pickupbox">
+                <label>Select your preferred pickup location:</label>
+                <select asp-for="CapstoneLocation">
+                    <option value="">Select a location</option>
+                    <option value="Capstone 1">Capstone 1</option>
+                    <option value="Capstone 2">Capstone 2</option>
+                    <option value="Capstone 3">Capstone 3</option>
+                </select>
+                <p class="warning">@Model.PickupMessage</p>
+            </div>
+            <div class="centre-buttons">
+                <input type="submit" name="Submit" value="Update" class="green-button custom-button specialinput" />
+                <input type="submit" name="Submit" value="Request Order" class="green-button custom-button specialinput" />
+                <input type="submit" name="Submit" value="Clear Cart" class="red-button custom-button specialinput" />
+            </div>
+        </form>
+    </div>
+</div>

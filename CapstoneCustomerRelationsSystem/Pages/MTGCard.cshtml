@@ -1,0 +1,46 @@
+﻿@page "/MTGCard/{CardID}"
+@model CapstoneCustomerRelationsSystem.Pages.MTGCardModel
+@{
+    ViewData["Title"] = "MTG Card";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/product-styles.css">
+    <link rel="stylesheet" href="~/styles/bstylesheet.css">
+}
+@section scripts {
+    <script type="text/javascript" src="./scripts/product-script.js"></script>
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div>
+    <div id="ProductContainer" class="product-container">
+        <div class="product-image-container card-image">
+            <img src="@Model.DisplayCard.ImageNormal" alt="@Model.DisplayCard.Name Product Image" title="@Model.DisplayCard.Name">
+        </div>
+        <section class="product-details">
+            <h1 class="product-name">@Model.DisplayCard.Name</h1>
+            <div>
+                <span class="">@Model.DisplayCard.SetName</span>
+                <br/>
+                <span class="">@Model.DisplayCard.Set @Model.DisplayCard.Collector_Number</span>
+                <br/>
+                <span class="full-product-price">
+                    <span>$</span><span class="product-price">@decimal.Round(Model.DisplayCard.Price, 2)</span><span> CAD</span>
+                </span>
+            </div>
+            <form method="post">
+                <label for="Quantity">Quantity:</label>
+                <input name="Quantity" id="Quantity" type="number" min="1" value="1">
+                <input type="hidden" id="CardID" value="@Model.CardID" />
+                <button type="submit" name="Submit" value="AddToRequestList" title="Add to Request List">
+                    Add to Request List
+                </button>
+            </form>
+        </section>
+    </div>
+</div>

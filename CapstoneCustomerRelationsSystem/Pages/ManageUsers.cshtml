@@ -1,0 +1,112 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.ManageUserAccountsModel
+@{
+    ViewData["Title"] = "Capstone Manage Accounts";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/user-account-styles.css">
+    <link rel="stylesheet" href="~/styles/manage-users-styles.css">
+}
+@section scripts {
+    <script type="text/javascript" src="~/scripts/manage-users.js" defer></script>
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+@section NotificationMessages {
+    <div id="NotificationMessages" class="notification-messages">
+        @if (Model.InfoMessage.Length > 0) {
+            <strong class="info-message">@Model.InfoMessage</strong>
+        }
+        @if (Model.WarningMessage.Length > 0) {
+            <strong class="warning-message">@Model.WarningMessage</strong>
+        }
+        @if (Model.DangerMessage.Length > 0) {
+            <strong class="danger-message">@Model.DangerMessage</strong>
+        }
+    </div>
+}
+
+<form id="UpdateAccountForm" name="UpdateAccountForm" class="update-account-form" method="POST">
+    <h2>Find Users</h2>
+    <div class="search-form">
+        <input name="SearchBar" type="search" placeholder="Search..." value="@Model.SearchBar">
+        <button name="Submit" value="Search" title="Search"><i class="fas fa-search"></i></button>
+    </div>
+    <span class="error-message">@Html.ValidationMessage("SearchBar")</span>
+    <section>
+        <h2>Found Accounts</h2>
+        <div class="found-accounts">
+            <table class="found-user-accounts-table">
+                <thead>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Username</th>
+                        <th>DCI Number</th>
+                        @if (User.IsInRole("Admin")) {
+                            <th>Roles</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var userAccount in @Model.FoundUserAccounts) {
+                        <tr>
+                            <td title="User Account Number">@userAccount.UserAccountNumber</td>
+                            <td title="Username">@userAccount.UserName</td>
+                            <td title="DCI Number">@userAccount.DCINumber</td>
+                            @if (User.IsInRole("Admin")) {
+                                <td>
+                                    <ul>
+                                        @foreach (var role in userAccount.Roles) {
+                                            <li>
+                                                - @role <button type="button" value="RemoveRole" onclick="PopulateRemoveMenuFields(@userAccount.UserAccountNumber, &quot;@userAccount.UserName&quot;, &quot;@role&quot;); ToggleRemoveMenu();"><i class="fas fa-times"></i></button>
+                                            </li>
+
+                                        }
+                                        <li>
+                                            <button class="add-button" type="button" onclick="PopulateUserAccountFields(@userAccount.UserAccountNumber, &quot;@userAccount.UserName&quot;); ToggleMenu();">Add Role <i class="fas fa-plus"></i></button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+    @if (User.IsInRole("Admin")) {
+        <div class="role-to-add-container hide">
+            <button class="full-window-button" type="button" onclick="ToggleMenu();" title="Close Menu"></button>
+            <section>
+                <h2>Which role would you like to add to <span id="SelectedUserAccountName"></span>?</h2>
+                <button class="close-menu-button" type="button" onclick="ToggleMenu();" title="Close Menu"><i class="fas fa-times"></i></button>
+                <input type="hidden" id="SelectedUserAccountNumber" name="SelectedUserAccountNumber" value="@Model.SelectedUserAccountNumber">
+                <label for="Roles">Role: </label>
+                <select name="SelectedRoleType">
+                    <option value="0">Select...</option>
+                    @foreach (var roleType in @Model.RoleTypes) {
+                        <option value="@roleType.RoleNumber" title="@roleType.RoleDescription">@roleType.RoleName</option>
+                    }
+                </select>
+                <span class="error-message">@Html.ValidationMessage("RoleType")</span>
+                <div class="add-role-button-container">
+                    <button type="Submit" name="Submit" value="AddRole" title="Add Role">Add Role</button>
+                </div>
+            </section>
+        </div>
+        <div class="role-to-remove-container hide">
+            <button class="full-window-button" type="button" onclick="ToggleRemoveMenu();" title="Close Menu"></button>
+            <section>
+                <h2>Are you sure you would like to remove the <span id="ViewRoleToRemoveName"></span> role from <span id="SelectedUserAccountNameToRemove"></span>?</h2>
+                <button class="close-menu-button" type="button" onclick="ToggleRemoveMenu();" title="Close Menu"><i class="fas fa-times"></i></button>
+                <input type="hidden" id="SelectedUserAccountNumberToRemove" name="SelectedUserAccountNumberToRemove" value="@Model.SelectedUserAccountNumberToRemove">
+                <input type="hidden" id="SelectedRoleNameToRemove" name="SelectedRoleNameToRemove" value="@Model.SelectedRoleNameToRemove">
+                <div class="remove-role-button-container">
+                    <button type="Submit" name="Submit" value="RemoveRole" title="Remove Role">Remove Role</button>
+                </div>
+            </section>
+        </div>
+    }
+</form>

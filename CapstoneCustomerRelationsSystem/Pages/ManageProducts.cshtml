@@ -1,0 +1,67 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.ManageProductsModel
+@{
+    ViewData["Title"] = "Capstone Manage Products";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/manage-news.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+    <link rel="stylesheet" href="~/styles/manage-products.css">
+}
+@section scripts {
+
+}
+<h1>@ViewData["Title"]</h1>
+<form name="ManageProductsForm" method="POST">
+<section class="search-form">
+    <input name="SearchBar" type="search" placeholder="Search..." value="@Model.SearchBar">
+    <button name="Submit" value="Search" title="Search"><i class="fas fa-search"></i></button>
+</section>
+<div class="manage-news-container">
+    <section id="NewsItems" class="news-items-container">
+        <div>                
+            <ul id="Grid">
+                @foreach (var _product in Model.Products) {
+                <li class="news-card">
+                    <button type="submit" name="Submit" value="PopulateUpdateForm@_product.ProductNumber" class="news-item-container">
+                        <div class="image-container">
+                            <img src="@_product.ImageURL" alt="Product Item" />
+                        </div>
+                    </button>
+                </li>
+                }
+            </ul>
+        </div>
+    </section>
+    <section id="UpdateNews" class="update-news">
+        <h2>Update Products</h2>
+        <input name="ProductNumber" type="hidden" value="@Model.ProductNumber">
+        <label for="ImageURL">Image URL:</label>
+        <input name="ImageURL" type="text" placeholder="Image URL..." value="@Model.ImageURL">
+        <span class="error-message">@Html.ValidationMessage("ImageURL")</span>
+        @* <label for="ProductLink">Product Link:</label>
+        <input name="ProductLink" type="text" placeholder="Product Link..." value="@Model.ProductLink">
+        <span class="error-message">@Html.ValidationMessage("ProductLink")</span> *@
+        <label for="CompanyName">Company Name:</label>
+        <input name="CompanyName" type="text" placeholder="Company Name..." value="@Model.CompanyName">
+        <span class="error-message">@Html.ValidationMessage("CompanyName")</span>
+        <label for="ProductName">Product Name:</label>
+        <input name= "ProductName" type="text" placeholder="Product name..." value="@Model.ProductName">
+        <span class="error-message">@Html.ValidationMessage("ProductName")</span>
+        <label for="ProductDescription">Product Description:</label>
+        <textarea name= "ProductDescription" type="text" placeholder="Product Description...">@Model.ProductDescription</textarea>
+        <span class="error-message">@Html.ValidationMessage("ProductDescription")</span>
+        <label for="ProductPrice">Product Price: (CAD)</label>
+        <input name= "ProductPrice" type="number" min="0" step="0.01" placeholder="Product Price..." value="@Model.ProductPrice">
+        <span class="error-message">@Html.ValidationMessage("ProductPrice")</span>
+
+        <!--Submit-->
+        <div>
+            <input type="submit" name="Submit" value="Delete"/>
+            <input type="submit" name="Submit" value="Update"/>
+            <input type="submit" name="Submit" value="Add"/>
+        </div>
+    </section>
+</form>
+</div>

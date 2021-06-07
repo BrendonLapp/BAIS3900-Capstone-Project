@@ -1,0 +1,87 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.UserAccountModel
+@{
+    ViewData["Title"] = "Capstone User Account";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/user-account-styles.css">
+}
+@section scripts {
+
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+@section NotificationMessages {
+    <div id="NotificationMessages" class="notification-messages">
+        @if (Model.InfoMessage.Length > 0) {
+            <strong class="info-message">@Model.InfoMessage</strong>
+        }
+        @if (Model.WarningMessage.Length > 0) {
+            <strong class="warning-message">@Model.WarningMessage</strong>
+        }
+        @if (Model.DangerMessage.Length > 0) {
+            <strong class="danger-message">@Model.DangerMessage</strong>
+        }
+    </div>
+}
+<section class="profile-container">
+    <div class="split">
+        <div>
+            <div class="account-portrait-background">
+                <div class="account-portrait-head"></div>
+                <div class="account-portrait-body"></div>
+            </div>
+            <h1>@Model.FirstName @Model.LastName</h1>
+        </div>
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Employee")) {
+        <section class="roles-container">
+            <h3>Roles:</h3>
+            <ul>
+            @foreach (var _role in @Model.CurrentUser.Roles)
+            {
+                <li>- @_role</li>
+            }
+            </ul>
+        </section>
+        }
+    </div>
+    <div>
+        @* <span>In-Store Credit: <span class="in-store-credit"><span>$</span><span class="credit-amount">@(Decimal.Round(Model.InStoreCredit, 2).ToString("0.00"))</span><span> CAD</span></span></span> *@
+    </div>
+</section>
+<form id="UpdateAccountForm" name="UpdateAccountForm" class="update-account-form" method="POST">
+    <div class="container">
+        <section>
+            <h2>Account Information</h2>
+            <label for="FirstName">First Name:</label>
+            <input type="text" name="FirstName" placeholder="First Name..." title="First Name" value="@Model.FirstName">
+            <span class="error-message">@Html.ValidationMessage("FirstName")</span>
+            <label for="LastName">Last Name:</label>
+            <input type="text" name="LastName" placeholder="Last Name..." title="Last Name" value="@Model.LastName">
+            <span class="error-message">@Html.ValidationMessage("LastName")</span>
+            <label for="UserName">User Name: *Changing requires you to sign in again.</label>
+            <input type="text" name="UserName" placeholder="Username..." title="User Name" value="@Model.UserName">
+            <span class="error-message">@Html.ValidationMessage("UserName")</span>
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" placeholder="Email..." title="Email" value="@Model.Email">
+            <span class="error-message">@Html.ValidationMessage("Email")</span>
+            <label for="PhoneNumber">Phone Number:</label>
+            <input type="tel" name="PhoneNumber" placeholder="Phone Number..." title="Phone Number" value="@Model.PhoneNumber">
+            <span class="error-message">@Html.ValidationMessage("PhoneNumber")</span>
+        </section>
+        <section>
+            <h2>Game Information</h2>
+            <label for="DCINumber">DCI Number: (MTG & D&D)</label>
+            <input type="text" name="DCINumber" placeholder="Wizard DCI Number..." title="DCI Number" value="@Model.DCINumber">
+            <span class="error-message">@Html.ValidationMessage("DCINumber")</span>
+        </section>
+    </div>
+    <div>
+        <button type="Submit" name="Submit" value="Update" title="Update Account">Update Account</button>
+    </div>
+    <div>
+        <a href="./ChangePassword">Change Password</a>
+    </div>
+</form>

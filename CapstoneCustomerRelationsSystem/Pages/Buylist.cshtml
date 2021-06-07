@@ -1,0 +1,80 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.BuylistModel
+@{
+    ViewData["Title"] = "View Buylist";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+    @* <link rel="stylesheet" href="~/styles/bstylesheet.css" /> *@
+}
+@section scripts {
+
+}
+
+<form name="SearchForm" class="search-form" method="get">
+    <input name="SearchQuery" type="search" placeholder="Search..." value="@Model.SearchQuery">
+    <button name="Button" value="Search"><i class="fas fa-search"></i></button>
+</form>
+@* <form name="SearchForm" class="search-form" method="POST">
+    <input name="SearchQuery" type="search" value="@Model.SearchQuery" placeholder="Search...">
+    <button name="Button" value="Search" title="Search"><i class="fas fa-search"></i></button>
+</form> *@
+
+<section id="NewsItems" class="news-items-container">
+    <ul id="Grid">
+        @if (Model.CardData != null)
+        {
+            @foreach (var card in Model.CardData)
+            {
+                <li class="news-card">
+                    <a class="news-item-container" href="~/MTGCard/@card.Id">
+                        <div class="image-container">
+                            <img src="@card.ImageSmall" alt="@card.ImageSmall Artwork" />
+                        </div>
+                        <input type="hidden" name="ID" value="@card.Id" />
+                        <span class="news-item-name">@card.Name</span>
+                        <span class="news-item-name">@card.SetName</span>
+                        <span class="news-item-name">@(card.Set.ToUpper()) @card.Collector_Number</span>
+                        <span class="news-item-name">@card.Rarity</span>
+                    </a>
+                </li>
+            }
+        }
+
+    </ul>
+    <ul class="pagination">
+        <li class="page-item @(Model.EnablePrevious ? " " : " disabled" )">
+            <a asp-route-currentPage="1" asp-route-SearchQuery="@Model.SearchQuery" aria-label="Frist">
+                <span aria-hidden="true">First</span>
+                <span class="sr-only">First</span>
+            </a>
+        </li>
+        <li class="page-item @(Model.EnablePrevious ? " " : " disabled" )">
+            <a asp-route-currentPage="@(Model.CurrentPage -1)" asp-route-SearchQuery="@Model.SearchQuery" aria-label="Next">
+                <span aria-hidden="true">Previous</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        @* Leaving this here so that the code for the page numbers is present for later if need be. *@
+        @*@for (var index = 1; index <= Model.TotalPages; index++)
+            {
+                <li class="page-item @(index == Model.CurrentPage ? " active" : "" )">
+                    <a asp-route-currentPage="@index" class="page-link">@index</a>
+                </li>
+            }*@
+        <li class="page-item @(Model.EnableNext ? " " : " disabled" )">
+            <a asp-route-currentpage="@(Model.CurrentPage + 1)" asp-route-SearchQuery="@Model.SearchQuery" aria-label="Previous">
+                <span aria-hidden="true">Next</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item @(Model.EnableNext ? " " : " disabled" )">
+            <a asp-route-currentPage="@Model.TotalPages" asp-route-SearchQuery="@Model.SearchQuery" aria-label="Last">
+                <span aria-hidden="true">Last</span>
+                <span class="sr-only">Last</span>
+            </a>
+        </li>
+    </ul>
+</section>

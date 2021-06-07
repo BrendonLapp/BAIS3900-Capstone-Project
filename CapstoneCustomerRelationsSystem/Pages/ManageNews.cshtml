@@ -1,0 +1,98 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.ManageNewsModel
+@{
+    ViewData["Title"] = "Capstone Manage News";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/manage-news.css">
+}
+@section scripts {
+
+}
+<h1>@ViewData["Title"]</h1>
+@section GreetingContainer {
+    <div id="GreetingContainer">
+            @* <img src="../images/Capstone-one-background.png" alt="Vatherdone With Ghosts By James Desmarais" width="950" height="534">
+            <div class="block-hover"></div> *@
+    </div>
+}
+
+<div class="manage-news-container">
+    <section id="SelectNews" class="select-news">
+        <h2>Select News</h2>
+        @* @foreach (var newsItem in @Model.ExistingNewsItems)
+        {
+            <img src="@newsItem.ImageURL">
+        } *@
+
+    <form name="SelectNewsForm" class="select-news-form" method="POST">
+        @foreach (var _imageType in Enumerable.Reverse(Model.ImageTypes).ToList())
+        {
+        <h2>@_imageType.Text</h2>
+        <ul class="news-item-list">
+            @foreach (var _newsItem in Model.ExistingNewsItems) {
+                @if (_newsItem.ImageType == _imageType.Text) {
+            <li class="small-tile">
+                <button type="submit" name="Submit" value="PopulateUpdateForm@_newsItem.NewsItemNumber" class="news-item-container">
+                    <div class="image-container">
+                        <img src="@_newsItem.ImageURL" alt="News Item" />
+                    </div>
+                </button>
+            </li>
+                }
+            }
+            <li class="small-tile">
+                <button type="submit" name="Submit" value="SetType@_imageType.Text" class="news-item-container">
+                    <div class="image-container">
+                        <img src="~/images/add-new-icon-v3.png" alt="News Item" />
+                    </div>
+                </button>
+            </li>
+            
+        </ul>
+            
+        }
+    </form>
+
+    </section>
+    <section id="UpdateNews" class="update-news">
+        <h2>Update News</h2>
+        <form name="UpdateNewsForm" class="update-news-form" method="POST">
+            <!--Required Fields-->
+            <input name="NewsItemNumber" type="hidden" value="@Model.NewsItemNumber">
+            <label asp-for="SelectedImageType">Image Type:</label>
+            <select asp-for="SelectedImageType" asp-items="@Model.ImageTypes" value="@Model.SelectedImageType">
+                <option value="0">Select...</option>
+            </select>
+            <span class="error-message">@Html.ValidationMessage("SelectedImageType")</span>
+            <label asp-for="ImageURL">Image URL</label>
+            <input name="ImageURL" type="text" value="@Model.ImageURL" placeholder="Image URL..."/>
+            <span class="error-message">@Html.ValidationMessage("ImageURL")</span>
+            <label asp-for="NewsItemLink">New Item Link (Where this takes someone)</label>
+            <input name="NewsItemLink" type="text" value="@Model.NewsItemLink" placeholder="News Item Link..."/>
+            <span class="error-message">@Html.ValidationMessage("NewsItemLink")</span>
+            @* <label asp-for="IndexPosition">Index Position</label>
+            <input name="IndexPosition" type="number" value="@Model.IndexPosition" placeholder="Index Position..."/>
+            <span class="error-message">@Html.ValidationMessage("IndexPosition")</span> *@
+
+            <!--Optional Fields-->
+            <label asp-for="OptionalNewsName">News Name (Optional)</label>
+            <input name="OptionalNewsName" type="text" value="@Model.OptionalNewsName" placeholder="News Name..."/>
+            <span class="error-message">@Html.ValidationMessage("OptionalNewsName")</span>
+            <label asp-for="OptionalNewsDescription">News Description (Optional)</label>
+            <input name="OptionalNewsDescription" type="text" value="@Model.OptionalNewsDescription" placeholder="News Description..."/>
+            <span class="error-message">@Html.ValidationMessage("OptionalNewsDescription")</span>
+            <label asp-for="OptionalNewsPrice">News Price (Optional)</label>
+            <input name="OptionalNewsPrice" type="text" value="@Model.OptionalNewsPrice" placeholder="News Price..."/>
+            <span class="error-message">@Html.ValidationMessage("OptionalNewsPrice")</span>
+
+        <!--Submit-->
+        <div>
+            <input type="submit" name="Submit" title="Delete" value="Delete"/>
+            <input type="submit" name="Submit" title="Update" value="Update"/>
+            <input type="submit" name="Submit" title="Add" value="Add"/>
+        </div>
+        </form>
+    </section>
+</div>

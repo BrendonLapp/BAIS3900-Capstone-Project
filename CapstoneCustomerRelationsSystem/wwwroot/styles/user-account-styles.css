@@ -1,0 +1,151 @@
+body {
+    background-color: #202020;
+}
+body main {
+    background-color: #202020;
+    color: #aaa;
+}
+h1 {
+    font-size: 2.5rem;
+}
+.profile-container, 
+.roles-container,
+main form {
+    display: flex;
+    padding: 2rem;
+    box-shadow: 0 0 2rem #000;
+    box-shadow: 0px 0px 10px 2px #141414;
+    border-radius: .5rem;
+    background-color: #252424;
+}
+.profile-container {
+    flex-direction: row;
+    justify-content: space-between;
+}
+.split {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.roles-container {
+    margin-left: 2rem;
+    align-self: center;
+    border-radius: 2rem;
+}
+.account-portrait-background {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 15rem;
+    width: 15rem;
+    padding: 1rem 1rem 0 1rem;
+    background-color: #252424;
+    overflow: hidden;
+    box-shadow: 0 0 1rem #000;
+    border-radius: 2rem;
+    margin-bottom: .5rem;
+}
+.account-portrait-head {
+    position: absolute;
+    margin-top: -.4rem;
+    height: 8.5rem;
+    width: 8.5rem;
+    background-color: #141414;
+    border-radius: 5rem;
+    border-width: 1rem;
+    border: solid;
+    border-color: #252424;
+    border-width: .8rem;
+    z-index: 55;
+}
+.account-portrait-body {
+    position: absolute;
+    bottom: 0;
+    width: 13rem;
+    height: 6rem;
+    background-color: #141414;
+    border-radius: 3.5rem 3.5rem 1rem 1rem;
+    margin-bottom: 1rem;
+}
+main form {
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+main form .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+main form .container section {
+    width: 50%;
+}
+main form .container section + section {
+    padding-left: 2rem;
+}
+main form input {
+    border-radius: .3rem;
+    border: none;
+    background-color: #575757;
+    margin-top: .2rem;
+    /* box-shadow: 0 .5rem 1rem #000; */
+    color: #ddd;
+}
+main form input::placeholder {
+    color: #fff;
+}
+main .in-store-credit {
+    padding: .5rem;
+    border-radius: .2rem;
+    background-color: #9e5604;
+    color: #fff;
+}
+main form .container + div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+main form button {
+    border: none;
+    background-color: #06649b;
+    min-height: 2rem;
+    color: #fff;
+    padding: 1.2rem 2rem;
+    border-radius: 2rem;
+    transition: background-color 0.1s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0, 0, 1, 1);
+    font-size: 1.6rem;
+}
+main form button:hover,
+main form button:active,
+main form button:focus {
+    background-color: #003f63;
+    cursor: pointer;
+}
+
+body main a:link,
+body main a:visited {
+    color: #4f8295;
+}
+body main a:hover,
+body main a:focus,
+body main a:active {
+    color: #78c2dd;
+}
+
+@media Only screen and (max-width: 980px) {
+    main form .container {
+        display: flex;
+        flex-direction: column;
+    }
+    main form .container section {
+        width: 100%;
+    }
+    main form .container section + section {
+        padding-left: 0;
+    }
+}

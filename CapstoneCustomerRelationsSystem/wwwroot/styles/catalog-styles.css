@@ -1,0 +1,96 @@
+body main {
+    width: 100%;
+}
+
+#Grid {
+    /* grid-template-columns: repeat(12, 1fr);   */
+    grid-template-columns: repeat(6, 1fr);  
+}
+
+/* .search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50rem;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.search-form input[type="search"] {
+    border: none;
+    border-radius: 1rem 0rem 0 1rem;
+}
+
+.search-form input[type="search"]:focus, 
+.search-form input[type="search"]:active {
+    outline: none;
+}
+
+.search-form button {
+    border: none;
+    background-color: #4a707c;
+    border-radius: 0 1rem 1rem 0;
+    color: #fff;
+    font-size: 2rem;
+    padding: .5rem 1.2rem;
+    transition: background-color 0.1s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+.search-form button:hover,
+.search-form button:active,
+.search-form button:focus {
+    cursor: pointer;
+    background-color: #628792;
+} */
+
+@media Only screen and (max-width: 980px) {
+    body main .search-form {
+        margin-top: 12rem;
+    }
+    body main #Grid {
+        padding: 0 1rem;
+    }
+    body main form.search-form {
+        width: 100%;
+        padding: 3rem;
+    }
+}
+
+@media Only screen and (min-width: 600px) {
+    #Grid {
+        /* grid-template-columns: repeat(18, 1fr);   */
+        grid-template-columns: repeat(12, 1fr);  
+    }
+}
+
+@media Only screen and (min-width: 980px) {
+    #Grid {
+        /* grid-template-columns: repeat(20, 1fr);   */
+        grid-template-columns: repeat(16, 1fr);  
+    }
+    body main .search-form {
+        margin-bottom: 2rem;
+    }
+}
+
+@media Only screen and (min-width: 1280px) {
+    #Grid {
+        /* grid-template-columns: repeat(20, 1fr);   */
+        grid-template-columns: repeat(16, 1fr);  
+    }
+}
+
+@media Only screen and (min-width: 1580px) {
+    #Grid {
+        /* grid-template-columns: repeat(24, 1fr);   */
+        grid-template-columns: repeat(20, 1fr);  
+    }
+}
+
+
+/* @media Only screen and (min-width: 980px) {
+    #Grid {
+        grid-template-columns: repeat(12, 1fr);  
+    }
+} */

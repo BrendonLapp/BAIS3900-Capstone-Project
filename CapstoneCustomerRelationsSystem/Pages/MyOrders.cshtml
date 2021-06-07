@@ -1,0 +1,54 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.MyOrdersModel
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/bstylesheet.css" />
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/catalog-styles.css">
+}
+
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div>
+    <h2>My Orders</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Order ID</th>
+                <th>Order Status</th>
+                <th>Total</th>
+                <th>Placed Date</th>
+                <th>Requested Store</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Orders != null)
+            {
+                @foreach (var Order in Model.Orders)
+                {
+                    <tr class="tablerow">
+                        <td>@Order.OrderID</td>
+                        <td>@Order.OrderStatus</td>
+                        <td>@decimal.Round(Order.Total, 2).ToString("C")</td>
+                        <td>@Order.PlacedDate.ToString("MMM/dd/yyyy")</td>
+                        <td>@Order.CapstoneLocation</td>
+                        <td>
+                            <a href="~/MyOrderDetails/@Order.OrderID" class="blue-button custom-button puffbutton">View Order</a>
+                            @if (Order.OrderStatus == "Ready For Payment")
+                            {
+                                <a href="~/Checkout/@Order.OrderID" class="green-button custom-button puffbutton">Purchase Order</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

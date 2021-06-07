@@ -1,0 +1,42 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.ProductModel
+@{
+    ViewData["Title"] = "Capstone Product Details";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/product-styles.css">
+}
+@section scripts {
+    <script type="text/javascript" src="~/scripts/product-script.js"></script>
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+
+<div id="ProductContainer" class="product-container">
+    <div class="product-image-container">
+        <img src="@Model.SearchedProduct.ImageURL" alt="@Model.SearchedProduct.ProductName Product Image" title="@Model.SearchedProduct.ProductName">
+    </div>
+    <section class="product-details">
+        <h1 class="product-name">@Model.SearchedProduct.ProductName</h1>
+        <span class="company-name">From: @Model.SearchedProduct.CompanyName</span>
+        <div>
+            <span class="full-product-price">
+                <span>$</span><span class="product-price">@Model.SearchedProduct.ProductPrice</span><span> CAD</span>
+            </span>
+        </div>
+        <form method="post">
+            <label for="Quantity">Quantity:</label>
+            <input name="Quantity" type="number" min="1" value="1">
+            <input type="hidden" name="ProductID" value="@Model.SearchedProduct.ProductNumber" />
+            <button type="submit" name="Submit" value="AddToRequestList" title="Add to Request List">Add to Request List</button>
+        </form>    
+    </section>
+</div>
+<section class="product-description-section">
+    <h2>Description</h2>
+    @* <p class="product-description">@Model.SearchedProduct.ProductDescription</p> *@
+    @Html.Raw(@Model.SearchedProduct.ProductDescription)
+</section>

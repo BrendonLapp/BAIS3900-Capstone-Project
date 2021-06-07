@@ -1,0 +1,158 @@
+body table.found-user-accounts-table {
+    width: 100%;
+    text-align: left;
+    color: #ddd;
+}
+body table.found-user-accounts-table thead {
+    font-weight: bold;
+    background-color: #141414;
+}
+body table.found-user-accounts-table tbody tr:nth-of-type(odd) {
+    background-color: #575757;
+}
+body table.found-user-accounts-table th,
+body table.found-user-accounts-table td {
+    padding: 1rem;
+    position: relative;
+}
+body table.found-user-accounts-table th:first-of-type {
+    padding-left: 1rem;
+    padding-right: 0;
+}
+body table.found-user-accounts-table th:not(:first-of-type) {
+    padding: 1rem 0;
+}
+body main .found-accounts {
+    border-radius: 1rem 1rem 0 1rem;
+    overflow: hidden;
+    max-height: 50rem;
+}
+body table.found-user-accounts-table ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+body table.found-user-accounts-table ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+body table.found-user-accounts-table ul li:not(:last-of-type) {
+    padding-bottom: 1rem;
+}
+body table.found-user-accounts-table button {
+    padding: .5rem 1rem;
+    background-color: #800000;
+    border: none;
+    color: #ddd;
+    border-radius: .3rem;
+}
+body table.found-user-accounts-table button:hover,
+body table.found-user-accounts-table button:active, 
+body table.found-user-accounts-table button:focus {
+    background-color: #640000;
+}
+body table.found-user-accounts-table button.add-button {
+    background-color: #008000;
+    padding: .5rem 3rem;
+    margin-left: auto;
+}
+body table.found-user-accounts-table button.add-button:hover, 
+body table.found-user-accounts-table button.add-button:active,
+body table.found-user-accounts-table button.add-button:focus {
+    background-color: #006400;
+}
+body .role-to-add-container,
+body .role-to-remove-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+body .role-to-add-container button.full-window-button,
+body .role-to-remove-container button.full-window-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000050;
+    border: none;
+    border-radius: 0;
+}
+    body .role-to-add-container section,
+    body .role-to-remove-container section{
+        padding: 2rem 6rem 2rem 2rem;
+        background-color: #252424;
+        border-radius: 2rem;
+        width: 50rem;
+        min-height: 15rem;
+        box-shadow: 0 0 2rem #000;
+        z-index: 100;
+    }
+body main .hide {
+    display: none;
+}
+body main .close-menu-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.8rem;
+    font-size: 3rem;
+    background-color: transparent;
+    padding: 0;
+    color: #ddd;
+    transition: color 0.1s;
+    transition-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+body main .close-menu-button:hover,
+body main .close-menu-button:active,
+body main .close-menu-button:focus {
+    color: #640000;
+    background-color: transparent;
+}
+
+body main select {
+    height: 3rem;
+}
+body main thead {
+    display: block;
+}
+body main tbody {
+    display: block;
+    max-height: 45rem;
+    overflow-y: scroll;
+}
+body main tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+body main tr td,
+body main tr th {
+    width: 25%;
+}
+body main .add-role-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 2rem;
+}
+body main .remove-role-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2rem;
+}
+body main .remove-role-button-container button {
+    background-color: #800000;
+}
+body main .remove-role-button-container button:hover,
+body main .remove-role-button-container button:active,
+body main .remove-role-button-container button:focus {
+    background-color: #640000;
+}

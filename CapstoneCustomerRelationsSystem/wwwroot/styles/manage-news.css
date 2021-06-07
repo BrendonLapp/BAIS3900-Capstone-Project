@@ -1,0 +1,83 @@
+.manage-news-container {
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+}
+.manage-news-container section {
+    display: flex;
+    flex-direction: column;
+}
+.manage-news-container section.select-news {
+    width: 70%;
+    padding-right: 1rem;
+}
+.manage-news-container section.update-news {
+    width: 30%;
+}
+.manage-news-container section.update-news form {
+    justify-content: flex-end;
+}
+
+main .container form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    border: none;
+    border-radius: 0;
+}
+main .container input[type="text"],
+select, 
+main .container input[type="number"] {
+    width: 75%;
+    height: 3rem;
+}
+main .container input[type="submit"] {
+    background-color: #008000;
+    color: #fff;
+    margin-right: 2rem;
+    padding: 1rem 1.5rem;
+}
+main .container input[type="submit"]:hover {
+    background-color: #006400;
+    cursor: pointer;
+}
+main .container input[type="submit"]:first-of-type {
+    background-color: #800000;
+    color: #fff;
+    /* margin-right: 2rem; */
+}
+main .container input[type="submit"]:first-of-type:hover {
+    background-color: #640000;
+    cursor: pointer;
+}
+.flex-right {
+    display: flex;
+    justify-content: right;
+}
+.news-item-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    min-height: 18rem;
+}
+.news-item-list li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 16rem;
+}
+.news-item-list li img {
+    max-height: 16rem;
+}
+button.news-item-container {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+form ul.news-item-list li {
+    width: auto;
+}

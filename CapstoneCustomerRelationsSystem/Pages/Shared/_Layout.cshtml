@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" href="~/images/Capstone-general-logo-3.png">
+    <link rel="stylesheet" href="~/styles/reset.css">
+    <link rel="stylesheet" href="~/styles/main-styles.css">
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico">
+    @RenderSection("styles", required: false)
+    <script type="text/javascript" src="~/scripts/main.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="https://kit.fontawesome.com/8af9acf4fa.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <span class="logo" style="display: inline-block;">
+                <a href="~/Index">
+                    <!-- Insert Logo Here-->
+                    <!--<img src="" alt="logo" width="50" height="50">-->
+                    <img src="~/images/Capstone-general-logo-3.png" title="Capstone Comics & Games" alt="Capstone Comics & Games">
+                    @* Capstone Comics & Games *@
+                </a>
+            </span>
+            <button id="OpenMenuBtn" type="button" aria-label="Toggle Menu Button" onclick="ToggleMobileNav();" class="show-in-mobile">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="MobileNav" class="show-in-mobile hide side-bar">
+                <ul class="clearfix">
+                    <li class="hide-home-link">
+                        <a href="~/Index">Home</a>
+                        <div class="fill-bar"></div>
+                    </li>
+                    <li>
+                        <a href="~/Catalog">Catalog</a>
+                        <div class="fill-bar"></div>
+                    </li>
+                    <li>
+                        <a href="#">Magic the Gathering <i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></a>
+                        <ul class="nested-nav-list">
+                            <li>
+                                <a href="~/ViewMTGCards">Magic The Gathering</a>
+                                <div class="nested-fill-bar"></div>
+                            </li>
+                            <li>
+                                <a href="~/Buylist">Buy List</a>
+                                <div class="nested-fill-bar"></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="~/About">About Us</a>
+                        <div class="fill-bar"></div>
+                    </li>
+                    <li>
+                        <a href="~/Contact">Contact Us</a>
+                        <div class="fill-bar"></div>
+                    </li>
+
+                    <!--Make sure the user is authenticated *This could check if they have the role Customer-->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="~/MyOrders">My Orders</a>
+                            <div class="fill-bar"></div>
+                        </li>
+                    }
+
+                    <!--Make sure admin, manager, or employee  is authenticated-->
+                    @if (User.IsInRole("Employee") || User.IsInRole("Manager") || User.IsInRole("Admin"))
+                    {
+                    <li>
+                        <a href="#">Employee <i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></a>
+                        <ul class="nested-nav-list">
+                            <li>
+                                <a href="~/ViewEmails">View Emails</a>
+                                <div class="nested-fill-bar"></div>
+                            </li>
+                            <li>
+                                <a href="~/ViewOrders">View Orders</a>
+                                <div class="nested-fill-bar"></div>
+                            </li>
+                            <li>
+                                <a href="~/ManageUsers">Manage Users</a>
+                                <div class="nested-fill-bar"></div>
+                            </li>
+                        </ul>
+                        <div class="fill-bar"></div>
+                    </li>
+                    }
+                    <!--Make sure admin is authenticated-->
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a href="#">Manage Website <i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></a>
+                            <ul class="nested-nav-list">
+                                <li>
+                                    <a href="~/ManageNews">Manage News</a>
+                                    <div class="nested-fill-bar"></div>
+                                </li>
+                                <li>
+                                    <a href="~/ManageProducts">Manage Products</a>
+                                    <div class="nested-fill-bar"></div>
+                                </li>
+                                <li>
+                                    <a href="~/AddToBuylist">Add to Buy List</a>
+                                    <div class="nested-fill-bar"></div>
+                                </li>
+                                <li>
+                                    <a href="~/ManageBuylist">Manage Buy List</a>
+                                    <div class="nested-fill-bar"></div>
+                                </li>
+                                <li>
+                                    <a href="~/MTGCardPanel">MTG Card Panel</a>
+                                    <div class="nested-fill-bar"></div>
+                                </li>
+                            </ul>
+                            <div class="fill-bar"></div>
+                        </li>
+                    }
+                    <li class="push-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="~/UserAccount">@User.Identity.Name <i class="fas fa-user"></i></a>
+                        }
+                    </li>
+                    <!--The cart is visible to everyone to indicate this is a shopping cart website.-->
+                    <li>
+                        <a href="~/Cart">Cart <i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="~/Logout">Sign Out</a>
+                        }
+                        else
+                        {
+                            <a href="~/Login">Sign In</a>
+                        }
+                        <div class="fill-bar"></div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    @if (IsSectionDefined("GreetingContainer")) {
+        @RenderSection("GreetingContainer", required: false)
+    }
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+        @if (IsSectionDefined("NotificationMessages")) {
+            @RenderSection("NotificationMessages", required: false)
+        }
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-container-I">
+                <ul id="Social_Media_icons" class="footer-social-icons-container social-media-icons">
+                    <li title="Capstone I - facebook">
+                        <a href="https://www.facebook.com/Capstone.One.Comics/">
+                            <img src="~/images/Capstone-one.png" alt="Capstone I" />
+                        </a>
+                    </li>
+                    <li title="Capstone II - facebook">
+                        <a href="https://www.facebook.com/pages/category/Comic-Bookstore/Capstone-2-Comics-and-Games-200341595196/">
+                            <img src="~/images/Capstone-two.png" alt="Capstone II" />
+                        </a>
+                    </li>
+                    <li title="Capstone III - facebook">
+                        <a href="https://www.facebook.com/groups/Capstoneiii/">
+                            <img src="~/images/Capstone-three.png" alt="Capstone III"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-container-II">
+                <img src="~/images/Capstone-general-logo-3.png" title="Capstone Comics & Games" alt="Capstone Comics & Games">
+            </div>
+        </div>
+        <div class="authors">
+            <span>Developed by: 
+                    <a href="http://linkedin.com/in/james-desmarais" title="LinkedIn - James Desmarais"><i class="fab fa-linkedin social-hover"></i> James Desmarais</a> | 
+                    <a href="http://linkedin.com/in/petronella-van-tonder" title="LinkedIn - Petronella van Tonder"><i class="fab fa-linkedin social-hover"></i> Petronella van Tonder</a> | 
+                    <a href="http://linkedin.com/in/brendon-lapp" title="LinkedIn - Brendon Lapp"><i class="fab fa-linkedin social-hover"></i> Brendon Lapp</a>
+            </span>
+        </div>
+        <div id="CopyrightNotice">
+            <div class="gradient-border-top"></div>
+            <span>© Capstone Comics & Games 2021 | 
+                <a href="#" id="PrivacyLink">Privacy Notice</a> | 
+                <a href="#" id="TermsOfUseLink">Terms of Use</a>
+            </span>
+        </div>
+    </footer>
+</body>
+</html>

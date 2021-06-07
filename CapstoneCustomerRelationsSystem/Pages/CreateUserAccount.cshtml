@@ -1,0 +1,69 @@
+@page
+@model CapstoneCustomerRelationsSystem.Pages.CreateUserAccountModel
+@{
+    ViewData["Title"] = "Capstone Create Account";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/user-account-styles.css">
+}
+@section scripts {
+
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+@section NotificationMessages {
+    <div id="NotificationMessages" class="notification-messages">
+        @if (Model.InfoMessage.Length > 0) {
+            <strong class="info-message">@Model.InfoMessage</strong>
+        }
+        @if (Model.WarningMessage.Length > 0) {
+            <strong class="warning-message">@Model.WarningMessage</strong>
+        }
+        @if (Model.DangerMessage.Length > 0) {
+            <strong class="danger-message">@Model.DangerMessage</strong>
+        }
+    </div>
+}
+<h1>@ViewData["Title"]</h1>
+<form name="CreateAccountForm" id="CreateAccountForm" class="create-account-form" method="POST">
+    <div class="container">
+    <section>
+        <h2>Account Information</h2>
+        <label for="FirstName">First Name:</label>
+        <input type="text" name="FirstName" placeholder="First Name..." title="First Name" value="@Model.FirstName">
+        <span class="error-message">@Html.ValidationMessage("FirstName")</span>
+        <label for="LastName">Last Name:</label>
+        <input type="text" name="LastName" placeholder="Last Name..." title="Last Name" value="@Model.LastName">
+        <span class="error-message">@Html.ValidationMessage("LastName")</span>
+        <label for="UserName">User Name:</label>
+        <input type="text" name="UserName" placeholder="Username..." title="User Name" value="@Model.UserName">
+        <span class="error-message">@Html.ValidationMessage("UserName")</span>
+        <label for="Email">Email:</label>
+        <input type="email" name="Email" placeholder="Email..." title="Email" value="@Model.Email">
+        <span class="error-message">@Html.ValidationMessage("Email")</span>
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="tel" name="PhoneNumber" placeholder="Phone Number..." title="Phone Number" value="@Model.PhoneNumber">
+        <span class="error-message">@Html.ValidationMessage("PhoneNumber")</span>
+        <label for="Password">Password:</label>
+        <input type="password" name="Password" placeholder="Password..." title="Password" value="@Model.Password">
+        <span class="error-message">@Html.ValidationMessage("Password")</span>
+        <label for="Password">Confirm Password:</label>
+        <input type="password" name="ConfirmPassword" placeholder="Confirm Password..." title="Confirm Password" value="@Model.ConfirmPassword">
+        <span class="error-message">@Html.ValidationMessage("ConfirmPassword")</span>
+    </section>
+    <section>
+        <h2>Game Information</h2>
+        <label for="DCINumber">DCI Number: (MTG & D&D)</label>
+        <input type="text" name="DCINumber" placeholder="Wizard DCI Number..." title="DCI Number" value="@Model.DCINumber">
+        <span class="error-message">@Html.ValidationMessage("DCINumber")</span>
+    </section>
+    </div>
+    <div class="flex-right">
+        <button type="submit" name="Submit" value="CreateAccount">Create Account</button>
+    </div>
+    <div>
+        @*<a href="#">Resend Email</a>*@
+    </div>
+</form>

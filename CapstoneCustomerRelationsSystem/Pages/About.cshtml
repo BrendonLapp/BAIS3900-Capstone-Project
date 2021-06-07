@@ -1,0 +1,408 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+@section styles {
+    <link rel="stylesheet" href="~/styles/about-style.css">
+}
+@section GreetingContainer {
+    <div id="GreetingContainer">
+    </div>
+}
+<h1 hidden>About</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <form name="UpdateHours" method="post">
+
+        <section class="find-us-container">
+            <h2>Find Us</h2>
+
+            <hr />
+
+            <section>
+                <h3>Capstone 1</h3>
+                <div class="phone-address">
+                    <img src="~/images/Capstone-one.png" alt="Capstone 1" class="Capstone-logo" />
+
+                    <span>
+                        <b>Phone:</b>
+                        <input type="text" name="CapstoneOnePhoneNumber" value="@Model.CapstoneOnePhoneNumber" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Email:</b>
+                        <input type="text" name="CapstoneOneEmail" value="@Model.CapstoneOneEmail" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Address:</b>
+                        <input type="text" name="CapstoneOneAddress" value="@Model.CapstoneOneAddress" maxlength="100" />
+                    </span>
+                </div>
+                <table class="hours">
+                    <tr>
+                        <td class="day-of-the-week">Sunday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneSundayHours" value="@Model.CapstoneOneSundayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Monday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneMondayHours" value="@Model.CapstoneOneMondayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Tuesday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneTuesdayHours" value="@Model.CapstoneOneTuesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Wednesday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneWednesdayHours" value="@Model.CapstoneOneWednesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Thursday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneThursdayHours" value="@Model.CapstoneOneThursdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Friday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneFridayHours" value="@Model.CapstoneOneFridayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Saturday</td>
+                        <td>
+                            <input type="text" name="CapstoneOneSaturdayHours" value="@Model.CapstoneOneSaturdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Holidays</td>
+                        <td>
+                            <input type="text" name="CapstoneOneHolidaysHours" value="@Model.CapstoneOneHolidaysHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="mapouter">
+                    <div class="gmap-canvas">
+                        <iframe id="gmap-canvas" src="@Model.CapstoneOneAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                    </div>
+                    <input type="text" name="CapstoneOneAddressLink" value="@Model.CapstoneOneAddressLink" maxlength="200" />
+                </div>
+            </section>
+
+            <section>
+                <h3>Capstone 2</h3>
+                <div class="phone-address">
+                    <img src="~/images/Capstone-two.png" alt="Capstone 2" />
+
+                    <span>
+                        <b>Phone:</b>
+                        <input type="text" name="CapstoneTwoPhoneNumber" value="@Model.CapstoneTwoPhoneNumber" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Email:</b>
+                        <input type="text" name="CapstoneTwoEmail" value="@Model.CapstoneTwoEmail" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Address:</b>
+                        <input type="text" name="CapstoneTwoAddress" value="@Model.CapstoneTwoAddress" maxlength="100" />
+                    </span>
+                </div>
+                <table class="hours">
+                    <tr>
+                        <td class="day-of-the-week">Sunday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoSundayHours" value="@Model.CapstoneTwoSundayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Monday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoMondayHours" value="@Model.CapstoneTwoMondayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Tuesday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoTuesdayHours" value="@Model.CapstoneTwoTuesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Wednesday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoWednesdayHours" value="@Model.CapstoneTwoWednesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Thursday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoThursdayHours" value="@Model.CapstoneTwoThursdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold">Friday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoFridayHours" value="@Model.CapstoneTwoFridayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Saturday</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoSaturdayHours" value="@Model.CapstoneTwoSaturdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Holidays</td>
+                        <td>
+                            <input type="text" name="CapstoneTwoHolidaysHours" value="@Model.CapstoneTwoHolidaysHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="mapouter">
+                    <div class="gmap-canvas">
+                        <iframe id="gmap-canvas" src="@Model.CapstoneTwoAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                    </div>
+                    <input type="text" name="CapstoneTwoAddressLink" value="@Model.CapstoneTwoAddressLink" maxlength="200" />
+                </div>
+            </section>
+
+            <section>
+                <h3>Capstone 3</h3>
+                <div class="phone-address">
+                    <img src="~/images/Capstone-three.png" alt="Capstone 3" />
+
+                    <span>
+                        <b>Phone:</b>
+                        <input type="text" name="CapstoneThreePhoneNumber" value="@Model.CapstoneThreePhoneNumber" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Email:</b>
+                        <input type="text" name="CapstoneThreeEmail" value="@Model.CapstoneThreeEmail" maxlength="50" />
+                    </span>
+                    <span>
+                        <b>Address:</b>
+                        <input type="text" name="CapstoneThreeAddress" value="@Model.CapstoneThreeAddress" maxlength="100" />
+                    </span>
+                </div>
+                <table class="hours">
+                    <tr>
+                        <td class="day-of-the-week">Sunday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeSundayHours" value="@Model.CapstoneThreeSundayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Monday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeMondayHours" value="@Model.CapstoneThreeMondayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Tuesday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeTuesdayHours" value="@Model.CapstoneThreeTuesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Wednesday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeWednesdayHours" value="@Model.CapstoneThreeWednesdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    <tr>
+                        <td class="day-of-the-week">Thursday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeThursdayHours" value="@Model.CapstoneThreeThursdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Friday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeFridayHours" value="@Model.CapstoneThreeFridayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Saturday</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeSaturdayHours" value="@Model.CapstoneThreeSaturdayHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-of-the-week">Holidays</td>
+                        <td>
+                            <input type="text" name="CapstoneThreeHolidaysHours" value="@Model.CapstoneThreeHolidaysHours" placeholder="##:##am - ##:##pm" maxlength="17" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="mapouter">
+                    <div class="gmap-canvas">
+                        <iframe id="gmap-canvas" src="@Model.CapstoneThreeAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                    </div>
+                    <input type="text" name="CapstoneThreeAddressLink" value="@Model.CapstoneThreeAddressLink" maxlength="200" />
+                </div>
+            </section>
+        </section>
+        <button type="submit" value="Update" name="Submit" class="submit-button">Submit</button>
+    </form>
+}
+else
+{
+    <section class="find-us-container">
+        <h2>Find Us</h2>
+
+        <section>
+            <h3>Capstone 1</h3>
+            <div class="phone-address">
+                <img src="~/images/Capstone-one.png" alt="Capstone 1" class="Capstone-logo" />
+
+                <span><b>Phone:</b> @Model.CapstoneOnePhoneNumber</span>
+                <span><b>Email:</b> @Model.CapstoneOneEmail</span>
+                <span><b>Address:</b> @Model.CapstoneOneAddress</span>
+            </div>
+            <table class="hours">
+                <tr>
+                    <td class="day-of-the-week">Sunday</td>
+                    <td>@Model.CapstoneOneSundayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Monday</td>
+                    <td>@Model.CapstoneOneMondayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Tuesday</td>
+                    <td>@Model.CapstoneOneTuesdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Wednesday</td>
+                    <td>@Model.CapstoneOneWednesdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Thursday</td>
+                    <td>@Model.CapstoneOneThursdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Friday</td>
+                    <td>@Model.CapstoneOneFridayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Saturday</td>
+                    <td>@Model.CapstoneOneSaturdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Holidays</td>
+                    <td>@Model.CapstoneOneHolidaysHours</td>
+                </tr>
+            </table>
+            <div class="mapouter">
+                <div class="gmap-canvas">
+                    <iframe id="gmap-canvas" src="@Model.CapstoneOneAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Capstone 2</h3>
+            <div class="phone-address">
+                <img src="~/images/Capstone-two.png" alt="Capstone 2" />
+
+                <span><b>Phone:</b> @Model.CapstoneTwoPhoneNumber</span>
+                <span><b>Email:</b> @Model.CapstoneTwoEmail</span>
+                <span><b>Address:</b> @Model.CapstoneTwoAddress</span>
+            </div>
+            <table class="hours">
+                <tr>
+                    <td class="day-of-the-week">Sunday</td>
+                    <td>@Model.CapstoneTwoSundayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Monday</td>
+                    <td>@Model.CapstoneTwoMondayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Tuesday</td>
+                    <td>@Model.CapstoneTwoTuesdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Wednesday</td>
+                    <td>@Model.CapstoneTwoWednesdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Thursday</td>
+                    <td>@Model.CapstoneTwoThursdayHours</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold">Friday</td>
+                    <td>@Model.CapstoneTwoFridayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Saturday</td>
+                    <td>@Model.CapstoneTwoSaturdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Holidays</td>
+                    <td>@Model.CapstoneTwoHolidaysHours</td>
+                </tr>
+            </table>
+            <div class="mapouter">
+                <div class="gmap-canvas">
+                    <iframe id="gmap-canvas" src="@Model.CapstoneTwoAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Capstone 3</h3>
+            <div class="phone-address">
+                <img src="~/images/Capstone-three.png" alt="Capstone 3" />
+
+                <span><b>Phone:</b> @Model.CapstoneThreePhoneNumber</span>
+                <span><b>Email:</b> @Model.CapstoneThreeEmail</span>
+                <span><b>Address:</b> @Model.CapstoneThreeAddress</span>
+            </div>
+            <table class="hours">
+                <tr>
+                    <td class="day-of-the-week">Sunday</td>
+                    <td>@Model.CapstoneThreeSundayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Monday</td>
+                    <td>@Model.CapstoneThreeMondayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Tuesday</td>
+                    <td>@Model.CapstoneOneTuesdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Wednesday</td>
+                    <td>@Model.CapstoneThreeWednesdayHours</td>
+                <tr>
+                    <td class="day-of-the-week">Thursday</td>
+                    <td>@Model.CapstoneThreeThursdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Friday</td>
+                    <td>@Model.CapstoneThreeFridayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Saturday</td>
+                    <td>@Model.CapstoneThreeSaturdayHours</td>
+                </tr>
+                <tr>
+                    <td class="day-of-the-week">Holidays</td>
+                    <td>@Model.CapstoneThreeHolidaysHours</td>
+                </tr>
+            </table>
+            <div class="mapouter">
+                <div class="gmap-canvas">
+                    <iframe id="gmap-canvas" src="@Model.CapstoneThreeAddressLink" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://embedgooglemap.net/maps/60"></a><br>
+                </div>
+            </div>
+        </section>
+    </section>
+}

@@ -1,0 +1,26 @@
+﻿@page
+@model CapstoneCustomerRelationsSystem.Pages.MTGCardPanelModel
+@{
+    ViewData["Title"] = "MTG Cards Control Panel";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/styles/gallery-styles.css">
+    <link rel="stylesheet" href="~/styles/bstylesheet.css">
+}
+
+<form method="post">
+    <div class="control-panel">
+        <div>
+            <p>Use this button when ever new Magic: The Gathering cards need to be added.</p>
+            <input type="submit" name="Button" value="Add New Cards" class="green-button" />
+        </div>
+        <br />
+        <div>
+            <p>Use this button daily to update the prices of all Magic: The Gathering cards.</p>
+            <br />
+            <p><span class="warning">Warning</span>Leave the website loaded after pressing this button. It may take a very long time for the update to finish!</p>
+            <input type="submit" name="Button" value="Update Prices" class="green-button" />
+        </div>
+    </div>
+</form>
