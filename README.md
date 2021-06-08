@@ -5,6 +5,7 @@ My capstone project for BAIST during the winter 2021 semester. This project had 
 # Tech used
 
 - C#
+- ADO.NET
 - Newtonsoft
 - MS SQL Database
 - Razor Pages
