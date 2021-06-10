@@ -23,11 +23,7 @@ namespace CapstoneCustomerRelationsSystem.Pages
 
         public IActionResult OnGet()
         {
-            if (User.Identity.Name == null || User.Identity.Name == "")
-            {
-                return RedirectToPage("/Index");
-            }
-            else
+            if (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Manager"))
             {
                 int UserAccountNumber;
                 OrdersController OrderController = new OrdersController();
@@ -39,7 +35,7 @@ namespace CapstoneCustomerRelationsSystem.Pages
                 OrderItems = OrderDetails.OrderItems;
                 OrderStatus = OrderDetails.OrderStatus;
 
-                if (OrderDetails.CustomerUserAccountNumber == UserAccountNumber)
+                if (OrderDetails.CustomerUserAccountNumber != UserAccountNumber)
                 {
                     return Page();
                 }
@@ -47,6 +43,10 @@ namespace CapstoneCustomerRelationsSystem.Pages
                 {
                     return RedirectToPage("/Index");
                 }
+            }
+            else
+            {
+                return RedirectToPage("/index");
             }
         }//End OnGet
 
